@@ -25,59 +25,54 @@ import junrar.io.Raw;
 
 /**
  * Mac File attribute header
- *
  */
-public class MacInfoHeader 
-extends SubBlockHeader 
-{
-	private static String TAG = MacInfoHeader.class.getName();
+public class MacInfoHeader
+        extends SubBlockHeader {
+    public static final short MacInfoHeaderSize = 8;
+    private static String TAG = MacInfoHeader.class.getName();
+    private int fileType;
+    private int fileCreator;
 
-	public static final short MacInfoHeaderSize = 8;
-	
-	private int fileType;
-	private int fileCreator;
-	
-	public MacInfoHeader(SubBlockHeader sb, byte[] macHeader)
-	{
-		super(sb);
-		int pos = 0;
-		fileType = Raw.readIntLittleEndian(macHeader, pos);
-		pos+=4;
-		fileCreator = Raw.readIntLittleEndian(macHeader, pos);
-	}
+    public MacInfoHeader(SubBlockHeader sb, byte[] macHeader) {
+        super(sb);
+        int pos = 0;
+        fileType = Raw.readIntLittleEndian(macHeader, pos);
+        pos += 4;
+        fileCreator = Raw.readIntLittleEndian(macHeader, pos);
+    }
 
-	/**
-	 * @return the fileCreator
-	 */
-	public int getFileCreator() {
-		return fileCreator;
-	}
+    /**
+     * @return the fileCreator
+     */
+    public int getFileCreator() {
+        return fileCreator;
+    }
 
-	/**
-	 * @param fileCreator the fileCreator to set
-	 */
-	public void setFileCreator(int fileCreator) {
-		this.fileCreator = fileCreator;
-	}
+    /**
+     * @param fileCreator the fileCreator to set
+     */
+    public void setFileCreator(int fileCreator) {
+        this.fileCreator = fileCreator;
+    }
 
-	/**
-	 * @return the fileType
-	 */
-	public int getFileType() {
-		return fileType;
-	}
+    /**
+     * @return the fileType
+     */
+    public int getFileType() {
+        return fileType;
+    }
 
-	/**
-	 * @param fileType the fileType to set
-	 */
-	public void setFileType(int fileType) {
-		this.fileType = fileType;
-	}
-	
-	public void print(){
-		super.print();
-		Log.i(TAG, "filetype: "+fileType);
-		Log.i(TAG, "creator :"+fileCreator);
-	}
-	
+    /**
+     * @param fileType the fileType to set
+     */
+    public void setFileType(int fileType) {
+        this.fileType = fileType;
+    }
+
+    public void print() {
+        super.print();
+        Log.i(TAG, "filetype: " + fileType);
+        Log.i(TAG, "creator :" + fileCreator);
+    }
+
 }

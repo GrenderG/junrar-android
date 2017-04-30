@@ -25,5 +25,5 @@ package junrar.unsigned;
  * @version $LastChangedRevision$
  */
 public class UnsignedInteger {
-	
+
 }

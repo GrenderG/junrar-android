@@ -19,19 +19,17 @@ package junrar.unpack.decode;
 
 /**
  * DOCUMENT ME
- * 
+ *
  * @author $LastChangedBy$
  * @version $LastChangedRevision$
  */
-public class MultDecode extends Decode
-{
+public class MultDecode extends Decode {
 
-	/**
-	 * 
-	 */
-	public MultDecode()
-	{
-		decodeNum = new int[Compress.MC20];
-	}
+    /**
+     *
+     */
+    public MultDecode() {
+        decodeNum = new int[Compress.MC20];
+    }
 
 }

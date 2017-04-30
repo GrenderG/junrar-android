@@ -20,39 +20,37 @@ package junrar.unpack.ppm;
 import junrar.io.Raw;
 
 
-
 /**
  * DOCUMENT ME
  *
  * @author $LastChangedBy$
  * @version $LastChangedRevision$
  */
-public class RarNode extends Pointer{
-	private int next; //rarnode pointer
+public class RarNode extends Pointer {
+    public static final int size = 4;
+    private int next; //rarnode pointer
 
-	public static final int size = 4;
-	
-	public RarNode(byte[] mem){
-		super(mem);
-	}
-	
-	public int getNext() {
-		if(mem!=null){
-			next = Raw.readIntLittleEndian(mem,  pos);
-		}
-		return next;
-	}
+    public RarNode(byte[] mem) {
+        super(mem);
+    }
 
-	public void setNext(RarNode next) {
-		setNext(next.getAddress());
-	}
-	
-	public void setNext(int next) {
-		this.next = next;
-		if(mem!=null){
-			Raw.writeIntLittleEndian(mem, pos, next);
-		}
-	}
+    public int getNext() {
+        if (mem != null) {
+            next = Raw.readIntLittleEndian(mem, pos);
+        }
+        return next;
+    }
+
+    public void setNext(int next) {
+        this.next = next;
+        if (mem != null) {
+            Raw.writeIntLittleEndian(mem, pos, next);
+        }
+    }
+
+    public void setNext(RarNode next) {
+        setNext(next.getAddress());
+    }
 
     public String toString() {
         StringBuilder buffer = new StringBuilder();

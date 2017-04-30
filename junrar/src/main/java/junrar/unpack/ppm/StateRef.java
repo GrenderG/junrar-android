@@ -20,62 +20,62 @@ package junrar.unpack.ppm;
 
 /**
  * DOCUMENT ME
- * 
+ *
  * @author $LastChangedBy$
  * @version $LastChangedRevision$
  */
 public class StateRef {
 
-	private int symbol;
+    private int symbol;
 
-	private int freq;
+    private int freq;
 
-	private int successor; // pointer ppmcontext
+    private int successor; // pointer ppmcontext
 
-	public StateRef() {
-	}
+    public StateRef() {
+    }
 
-	public int getSymbol() {
-		return symbol;
-	}
+    public int getSymbol() {
+        return symbol;
+    }
 
-	public void setSymbol(int symbol) {
-		this.symbol = symbol&0xff;
-	}
+    public void setSymbol(int symbol) {
+        this.symbol = symbol & 0xff;
+    }
 
-	public int getFreq() {
-		return freq;
-	}
+    public int getFreq() {
+        return freq;
+    }
 
-	public void setFreq(int freq) {
-		this.freq = freq&0xff;
-	}
+    public void setFreq(int freq) {
+        this.freq = freq & 0xff;
+    }
 
     public void incFreq(int dFreq) {
-        freq = (freq + dFreq)&0xff;
+        freq = (freq + dFreq) & 0xff;
     }
 
     public void decFreq(int dFreq) {
-        freq = (freq - dFreq)&0xff;
+        freq = (freq - dFreq) & 0xff;
     }
 
-	public void setValues(State statePtr){
-		setFreq(statePtr.getFreq());
-		setSuccessor(statePtr.getSuccessor());
-		setSymbol(statePtr.getSymbol());
-	}
-	
-	public int getSuccessor() {
-		return successor;
-	}
+    public void setValues(State statePtr) {
+        setFreq(statePtr.getFreq());
+        setSuccessor(statePtr.getSuccessor());
+        setSymbol(statePtr.getSymbol());
+    }
 
-	public void setSuccessor(PPMContext successor) {
-		setSuccessor(successor.getAddress());
-	}
+    public int getSuccessor() {
+        return successor;
+    }
 
-	public void setSuccessor(int successor) {
-		this.successor = successor;
-	}
+    public void setSuccessor(int successor) {
+        this.successor = successor;
+    }
+
+    public void setSuccessor(PPMContext successor) {
+        setSuccessor(successor.getAddress());
+    }
 
     public String toString() {
         StringBuilder buffer = new StringBuilder();

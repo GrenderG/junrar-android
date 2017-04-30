@@ -2,7 +2,6 @@ package junrar;
 
 
 /**
- *
  * @author alban
  */
 public interface UnrarCallback {

@@ -21,13 +21,13 @@ import junrar.io.Raw;
 
 /**
  * DOCUMENT ME
- * 
+ *
  * @author $LastChangedBy$
  * @version $LastChangedRevision$
  */
-public class FreqData extends Pointer{
+public class FreqData extends Pointer {
 
-	public static final int size = 6; 
+    public static final int size = 6;
 
 //    struct FreqData
 //    {
@@ -35,9 +35,9 @@ public class FreqData extends Pointer{
 //        STATE _PACK_ATTR * Stats;
 //    };
 
-	public FreqData(byte[]mem){
-		super(mem);
-	}
+    public FreqData(byte[] mem) {
+        super(mem);
+    }
 
     public FreqData init(byte[] mem) {
         this.mem = mem;
@@ -46,28 +46,28 @@ public class FreqData extends Pointer{
     }
 
     public int getSummFreq() {
-		return Raw.readShortLittleEndian(mem,  pos)&0xffff;
-	}
+        return Raw.readShortLittleEndian(mem, pos) & 0xffff;
+    }
 
-	public void setSummFreq(int summFreq) {
-        Raw.writeShortLittleEndian(mem, pos, (short)summFreq);
-	}
+    public void setSummFreq(int summFreq) {
+        Raw.writeShortLittleEndian(mem, pos, (short) summFreq);
+    }
 
     public void incSummFreq(int dSummFreq) {
         Raw.incShortLittleEndian(mem, pos, dSummFreq);
     }
 
     public int getStats() {
-        return Raw.readIntLittleEndian(mem,  pos+2);
-	}
-
-	public void setStats(State state) {
-		setStats(state.getAddress());
-	}
+        return Raw.readIntLittleEndian(mem, pos + 2);
+    }
 
     public void setStats(int state) {
-        Raw.writeIntLittleEndian(mem, pos+2, state);
-	}
+        Raw.writeIntLittleEndian(mem, pos + 2, state);
+    }
+
+    public void setStats(State state) {
+        setStats(state.getAddress());
+    }
 
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -83,5 +83,5 @@ public class FreqData extends Pointer{
         buffer.append("\n]");
         return buffer.toString();
     }
-	
+
 }

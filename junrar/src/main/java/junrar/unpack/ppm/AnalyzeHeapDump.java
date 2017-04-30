@@ -12,8 +12,10 @@ import java.io.InputStream;
  * @author alban
  */
 public class AnalyzeHeapDump {
-    
-    /** Creates a new instance of AnalyzeHeapDump */
+
+    /**
+     * Creates a new instance of AnalyzeHeapDump
+     */
     public AnalyzeHeapDump() {
     }
 
@@ -39,7 +41,7 @@ public class AnalyzeHeapDump {
         long len = Math.min(clen, jlen);
         InputStream cin = null;
         InputStream jin = null;
-        int bufferLen = 256*1024;
+        int bufferLen = 256 * 1024;
         try {
             cin = new BufferedInputStream(
                     new FileInputStream(cfile), bufferLen);
@@ -56,8 +58,7 @@ public class AnalyzeHeapDump {
                         matching = false;
                         mismatchFound = true;
                     }
-                }
-                else { // match
+                } else { // match
                     if (!matching) {
                         printMismatch(startOff, off);
                         matching = true;
@@ -72,17 +73,15 @@ public class AnalyzeHeapDump {
                 System.out.println("Files are identical");
             }
             System.out.println("Done");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
-				cin.close();
-				jin.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+                cin.close();
+                jin.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -25,68 +25,62 @@ import junrar.io.Raw;
 
 /**
  * extended archive CRC header
- *
  */
-public class EAHeader 
-extends SubBlockHeader 
-{
-	private static String TAG = EAHeader.class.getName();
-	
-	public static final short EAHeaderSize = 10;
-	
-	private int unpSize;
-	private byte unpVer;
-	private byte method;
-	private int EACRC;
-	
-	public EAHeader(SubBlockHeader sb, byte[] eahead)
-	{
-		super(sb);
-		int pos = 0;
-		unpSize = Raw.readIntLittleEndian(eahead, pos);
-		pos+=4;
-		unpVer |= eahead[pos]&0xff;
-		pos++;
-		method |= eahead[pos]&0xff;
-		pos++;
-		EACRC = Raw.readIntLittleEndian(eahead, pos);
-	}
+public class EAHeader
+        extends SubBlockHeader {
+    public static final short EAHeaderSize = 10;
+    private static String TAG = EAHeader.class.getName();
+    private int unpSize;
+    private byte unpVer;
+    private byte method;
+    private int EACRC;
 
-	/**
-	 * @return the eACRC
-	 */
-	public int getEACRC() {
-		return EACRC;
-	}
+    public EAHeader(SubBlockHeader sb, byte[] eahead) {
+        super(sb);
+        int pos = 0;
+        unpSize = Raw.readIntLittleEndian(eahead, pos);
+        pos += 4;
+        unpVer |= eahead[pos] & 0xff;
+        pos++;
+        method |= eahead[pos] & 0xff;
+        pos++;
+        EACRC = Raw.readIntLittleEndian(eahead, pos);
+    }
 
-	/**
-	 * @return the method
-	 */
-	public byte getMethod() {
-		return method;
-	}
+    /**
+     * @return the eACRC
+     */
+    public int getEACRC() {
+        return EACRC;
+    }
 
-	/**
-	 * @return the unpSize
-	 */
-	public int getUnpSize() {
-		return unpSize;
-	}
+    /**
+     * @return the method
+     */
+    public byte getMethod() {
+        return method;
+    }
 
-	/**
-	 * @return the unpVer
-	 */
-	public byte getUnpVer() {
-		return unpVer;
-	}
-	
-	public void print()
-	{
-		super.print();
-		Log.i(TAG, "unpSize: "+unpSize);
-		Log.i(TAG, "unpVersion: " + unpVer);
-		Log.i(TAG, "method: "+method);
-		Log.i(TAG, "EACRC:" + EACRC);
-	}
+    /**
+     * @return the unpSize
+     */
+    public int getUnpSize() {
+        return unpSize;
+    }
+
+    /**
+     * @return the unpVer
+     */
+    public byte getUnpVer() {
+        return unpVer;
+    }
+
+    public void print() {
+        super.print();
+        Log.i(TAG, "unpSize: " + unpSize);
+        Log.i(TAG, "unpVersion: " + unpVer);
+        Log.i(TAG, "method: " + method);
+        Log.i(TAG, "EACRC:" + EACRC);
+    }
 }
 

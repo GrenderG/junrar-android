@@ -23,50 +23,44 @@ import android.util.Log;
 import junrar.io.Raw;
 
 
-public class SubBlockHeader 
-extends BlockHeader 
-{
-	private static String TAG = SubBlockHeader.class.getName();
-	
-	public static final short SubBlockHeaderSize = 3;
-	
-	private short subType;
-	private byte level;
-	
-	public SubBlockHeader(SubBlockHeader sb)
-	{
-		super(sb);
-		subType = sb.getSubType().getSubblocktype();
-		level = sb.getLevel();
-	}
-	
-	public SubBlockHeader(BlockHeader bh, byte[] subblock)
-	{
-		super(bh);
-		int position = 0;
-		subType = Raw.readShortLittleEndian(subblock, position);
-		position +=2;
-		level |= subblock[position]&0xff;
-	}
+public class SubBlockHeader
+        extends BlockHeader {
+    public static final short SubBlockHeaderSize = 3;
+    private static String TAG = SubBlockHeader.class.getName();
+    private short subType;
+    private byte level;
 
-	/**
-	 * @return
-	 */
-	public byte getLevel() {
-		return level;
-	}
+    public SubBlockHeader(SubBlockHeader sb) {
+        super(sb);
+        subType = sb.getSubType().getSubblocktype();
+        level = sb.getLevel();
+    }
 
-	/**
-	 * @return
-	 */
-	public SubBlockHeaderType getSubType() {
-		return SubBlockHeaderType.findSubblockHeaderType(subType);
-	}
+    public SubBlockHeader(BlockHeader bh, byte[] subblock) {
+        super(bh);
+        int position = 0;
+        subType = Raw.readShortLittleEndian(subblock, position);
+        position += 2;
+        level |= subblock[position] & 0xff;
+    }
 
-	public void print()
-	{
-		super.print();
-		Log.i(TAG, "subtype: "+getSubType());
-		Log.i(TAG, "level: "+level);
-	}
+    /**
+     * @return
+     */
+    public byte getLevel() {
+        return level;
+    }
+
+    /**
+     * @return
+     */
+    public SubBlockHeaderType getSubType() {
+        return SubBlockHeaderType.findSubblockHeaderType(subType);
+    }
+
+    public void print() {
+        super.print();
+        Log.i(TAG, "subtype: " + getSubType());
+        Log.i(TAG, "level: " + level);
+    }
 }
