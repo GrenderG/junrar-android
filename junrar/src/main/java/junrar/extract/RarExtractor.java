@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import junrar.Archive;
+import junrar.UnrarCallback;
 import junrar.exception.RarException;
 import junrar.rarfile.FileHeader;
 
@@ -72,13 +73,21 @@ public class RarExtractor {
     }
 
     public void extractArchive(String archive, String destination) throws RarException, IOException {
-        extractArchive(new File(archive), new File(destination));
+        extractArchive(new File(archive), new File(destination), null);
+    }
+
+    public void extractArchive(String archive, String destination, UnrarCallback unrarCallback) throws RarException, IOException {
+        extractArchive(new File(archive), new File(destination), unrarCallback);
     }
 
     public void extractArchive(File archive, File destination) throws RarException, IOException {
+        extractArchive(archive, destination, null);
+    }
+
+    public void extractArchive(File archive, File destination, UnrarCallback unrarCallback) throws RarException, IOException {
         Archive arch = null;
         try {
-            arch = new Archive(archive);
+            arch = new Archive(archive, unrarCallback);
         } catch (RarException re) {
             Log.e(TAG, re.getMessage(), re);
             throw re;
