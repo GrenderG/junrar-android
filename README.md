@@ -1,13 +1,13 @@
 Junrar-Android
 ==============
 
-**Forked from** [inorichi/junrar-android](https://github.com/inorichi/junrar-android)
+**Current version forked from** [inorichi/junrar-android](https://github.com/inorichi/junrar-android)
 
 * Removed unused classes and imports.
 * Added support for Jitpack builds.
 * Now `UnrarCallback` is finally implemented.
 
-**Forked from** [Albertus82/JUnRAR](https://github.com/Albertus82/JUnRAR)
+**Original junrar-android forked from** [Albertus82/JUnRAR](https://github.com/Albertus82/JUnRAR)
 
 * Removed commons-logging dependency and VFS support.
 * Built with Gradle.
@@ -49,13 +49,13 @@ dependencies {
 ## Basic usage
 
 ```java
-new RarExtractor().extractArchive("path/to/rar, "destination/path");
+new RarExtractor().extractArchive("path/to/rar", "destination/path");
 ```
 
 ### Using `UnrarCallback`
 
 ```java
-new RarExtractor().extractArchive("/sdcard/Download/asd.cbr", "/sdcard/Download/", new UnrarCallback() {
+new RarExtractor().extractArchive("path/to/rar", "destination/path", new UnrarCallback() {
             
     // Checks if the next volume is ready to be processed. (You can ignore this if you only
     // want to know the extraction progress).
