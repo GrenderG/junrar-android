@@ -1,6 +1,12 @@
 Junrar-Android
 ==============
 
+**Forked from** [inorichi/junrar-android](https://github.com/inorichi/junrar-android)
+
+* Removed unused classes and imports.
+* Added support for Jitpack builds.
+* Now `UnrarCallback` is finally implemented.
+
 **Forked from** [Albertus82/JUnRAR](https://github.com/Albertus82/JUnRAR)
 
 * Removed commons-logging dependency and VFS support.
@@ -14,3 +20,54 @@ Junrar-Android
 * Multi-volume archives are supported in both old and new flavours (`.rXX` & `.partX.rar`).
 * **Encrypted and password protected archives are not yet supported.**
 * **RAR 5 format is not supported**.
+
+
+## Prerequisites
+
+Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
+
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+## Dependency
+
+Add this to your module's `build.gradle` file (make sure the version matches the JitPack badge above):
+
+```gradle
+dependencies {
+	...
+	compile 'com.github.GrenderG:junrar-android:1.0.1'
+}
+```
+
+## Basic usage
+
+```java
+new RarExtractor().extractArchive("path/to/rar, "destination/path");
+```
+
+### Using `UnrarCallback`
+
+```java
+new RarExtractor().extractArchive("/sdcard/Download/asd.cbr", "/sdcard/Download/", new UnrarCallback() {
+            
+    // Checks if the next volume is ready to be processed. (You can ignore this if you only
+    // want to know the extraction progress).
+    @Override
+    public boolean isNextVolumeReady(Volume volume) {
+        return false;
+    }
+                
+    // Once a file of the RAR is decompressed, this method is called. (Size is in bytes).
+    @Override
+    public void volumeProgressChanged(long current, long total) {
+        Log.d("Progress", (current * 100) / total + "% - " + current + " out of " + total);
+    }
+});
+```
