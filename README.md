@@ -42,7 +42,7 @@ Add this to your module's `build.gradle` file (make sure the version matches the
 ```gradle
 dependencies {
 	...
-	compile 'com.github.GrenderG:junrar-android:1.0.2'
+	compile 'com.github.GrenderG:junrar-android:1.0.3'
 }
 ```
 
